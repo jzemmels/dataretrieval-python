@@ -1,0 +1,3795 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>USGS dataretrieval Python Package get_qwdata() Examples &mdash; dataretrieval 0.1.dev1+g64b0609 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0d7da1c0"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="USGS dataretrieval Python Package get_water_use() Examples" href="USGS_dataretrieval_WaterUse_Examples.html" />
+    <link rel="prev" title="USGS dataretrieval Python Package get_iv() Examples" href="USGS_dataretrieval_UnitValues_Examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            dataretrieval
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../meta/installing.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#simple-uses-of-the-dataretrieval-package">Simple uses of the <code class="docutils literal notranslate"><span class="pre">dataretrieval</span></code> package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#example-notebooks-from-hydroshare">Example Notebooks from Hydroshare</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_DailyValues_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_dv()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_GroundwaterLevels_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_gwlevels()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_Measurements_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_discharge_measurements()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_ParameterCodes_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_pmcodes()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_Peaks_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_discharge_peaks()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_Ratings_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_ratings()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_SiteInfo_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_info()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_SiteInventory_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">what_sites()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_Statistics_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_stats()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_UnitValues_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_iv()</span></code> Examples</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_qwdata()</span></code> Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Install-the-Package">Install the Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Basic-Usage">Basic Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Interpreting-the-Result">Interpreting the Result</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Additional-Examples">Additional Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_WaterUse_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_water_use()</span></code> Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#using-dataretrieval-to-obtain-nation-trends-in-peak-annual-streamflow">Using <code class="docutils literal notranslate"><span class="pre">dataretrieval</span></code> to obtain nation trends in peak annual streamflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#duplicating-the-r-dataretrieval-vignettes-functionality">Duplicating the R <code class="docutils literal notranslate"><span class="pre">dataRetrieval</span></code> vignettes functionality</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../meta/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../meta/license.html">License and Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">API reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dataretrieval</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Examples</a></li>
+      <li class="breadcrumb-item active">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_qwdata()</span></code> Examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/USGS_dataretrieval_WaterSamples_Examples.nblink.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="USGS-dataretrieval-Python-Package-get_qwdata()-Examples">
+<h1>USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_qwdata()</span></code> Examples<a class="headerlink" href="#USGS-dataretrieval-Python-Package-get_qwdata()-Examples" title="Link to this heading"></a></h1>
+<p>This notebook provides examples of using the Python dataretrieval package to retrieve water quality sample data for United States Geological Survey (USGS) monitoring sites. The dataretrieval package provides a collection of functions to get data from the USGS National Water Information System (NWIS) and other online sources of hydrology and water quality data, including the United States Environmental Protection Agency (USEPA).</p>
+<section id="Install-the-Package">
+<h2>Install the Package<a class="headerlink" href="#Install-the-Package" title="Link to this heading"></a></h2>
+<p>Use the following code to install the package if it doesn’t exist already within your Jupyter Python environment.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>dataretrieval
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: dataretrieval in /home/runner/.local/lib/python3.10/site-packages (0.1.dev1+g64b0609)
+Requirement already satisfied: requests in /home/runner/.local/lib/python3.10/site-packages (from dataretrieval) (2.32.3)
+Requirement already satisfied: pandas==2.* in /home/runner/.local/lib/python3.10/site-packages (from dataretrieval) (2.2.3)
+Requirement already satisfied: numpy&gt;=1.22.4 in /home/runner/.local/lib/python3.10/site-packages (from pandas==2.*-&gt;dataretrieval) (2.1.2)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/.local/lib/python3.10/site-packages (from pandas==2.*-&gt;dataretrieval) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/lib/python3/dist-packages (from pandas==2.*-&gt;dataretrieval) (2022.1)
+Requirement already satisfied: tzdata&gt;=2022.7 in /home/runner/.local/lib/python3.10/site-packages (from pandas==2.*-&gt;dataretrieval) (2024.2)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/.local/lib/python3.10/site-packages (from requests-&gt;dataretrieval) (3.4.0)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/lib/python3/dist-packages (from requests-&gt;dataretrieval) (3.3)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/lib/python3/dist-packages (from requests-&gt;dataretrieval) (1.26.5)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/lib/python3/dist-packages (from requests-&gt;dataretrieval) (2020.6.20)
+Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3/dist-packages (from python-dateutil&gt;=2.8.2-&gt;pandas==2.*-&gt;dataretrieval) (1.16.0)
+</pre></div></div>
+</div>
+<p>Load the package so you can use it along with other packages used in this notebook.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dataretrieval</span> <span class="kn">import</span> <span class="n">nwis</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Basic-Usage">
+<h2>Basic Usage<a class="headerlink" href="#Basic-Usage" title="Link to this heading"></a></h2>
+<p>The dataretrieval package has several functions that allow you to retrieve data from different web services. This examples uses the <code class="docutils literal notranslate"><span class="pre">get_qwdata()</span></code> function to retrieve water quality sample data for USGS monitoring sites from NWIS. The following arguments are supported:</p>
+<p>Arguments (Additional arguments, if supplied, will be used as query parameters)</p>
+<ul class="simple">
+<li><p><strong>sites</strong> (string or list of strings): A list of USGS site identifiers for which to retrieve data. If the qwdata parameter site_no is supplied, it will overwrite the sites parameter.</p></li>
+<li><p><strong>parameterCd</strong> (string or list of strings): A list of USGS parameter codes for which to retrieve data.</p></li>
+<li><p><strong>start</strong> (string): The beginning date for a period for which to retrieve data. If the qwdata parameter begin_date is supplied, it will overwrite the start parameter.</p></li>
+<li><p><strong>end</strong> (string): The ending date for a period for which to retrieve data. If the qwdata parameter end_date is supplied, it will overwrite the end parameter.</p></li>
+<li><p><strong>datetime_index</strong> (boolean): If True, create a datetime index</p></li>
+<li><p><strong>wide_format</strong> (boolean): If True, return data in wide format with multiple samples per row and one row per time.</p></li>
+</ul>
+<section id="Example-1:-Get-all-water-quality-sample-data-for-a-single-monitoring-site">
+<h3>Example 1: Get all water quality sample data for a single monitoring site<a class="headerlink" href="#Example-1:-Get-all-water-quality-sample-data-for-a-single-monitoring-site" title="Link to this heading"></a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">siteID</span> <span class="o">=</span> <span class="s1">&#39;10109000&#39;</span>
+<span class="n">wq_data</span> <span class="o">=</span> <span class="n">nwis</span><span class="o">.</span><span class="n">get_qwdata</span><span class="p">(</span><span class="n">sites</span><span class="o">=</span><span class="n">siteID</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Retrieved data for &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wq_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="s1">&#39; samples.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/runner/.local/lib/python3.10/site-packages/dataretrieval/nwis.py:192: UserWarning: WARNING: Starting in March 2024, the NWIS qw data endpoint is retiring and no longer receives updates. For more information, refer to https://waterdata.usgs.gov.nwis/qwdata and https://doi-usgs.github.io/dataRetrieval/articles/Status.html or email CompTools@usgs.gov.
+  warnings.warn(
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Retrieved data for 345 samples.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/runner/.local/lib/python3.10/site-packages/dataretrieval/utils.py:90: UserWarning: Warning: 7 incomplete dates found, consider setting datetime_index to False.
+  warnings.warn(
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Interpreting-the-Result">
+<h2>Interpreting the Result<a class="headerlink" href="#Interpreting-the-Result" title="Link to this heading"></a></h2>
+<p>The result of calling the <code class="docutils literal notranslate"><span class="pre">get_qwdata()</span></code> function is an object that contains a Pandas data frame object and an associated metadata object. The Pandas data frame contains the water quality sample data for the requested site, and or observed variables and time frame.</p>
+<p>Once you’ve got the data frame, there’s several useful things you can do to explore the data.</p>
+<p>Display the data frame as a table. The default data frame for this function is a wide, cross-tabulated table, with columns for each observed variable and a row for each sample date (wide_format=True).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">wq_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>agency_cd</th>
+      <th>site_no</th>
+      <th>sample_dt</th>
+      <th>sample_tm</th>
+      <th>sample_end_dt</th>
+      <th>sample_end_tm</th>
+      <th>sample_start_time_datum_cd</th>
+      <th>tm_datum_rlbty_cd</th>
+      <th>coll_ent_cd</th>
+      <th>medium_cd</th>
+      <th>...</th>
+      <th>p70300</th>
+      <th>p70301</th>
+      <th>p70302</th>
+      <th>p70303</th>
+      <th>p71851</th>
+      <th>p71999</th>
+      <th>p81903</th>
+      <th>p82398</th>
+      <th>p84164</th>
+      <th>p99111</th>
+    </tr>
+    <tr>
+      <th>datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1967-09-13 13:35:00+00:00</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1967-09-13</td>
+      <td>07:35</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>NaN</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>196.0</td>
+      <td>NaN</td>
+      <td>108.0</td>
+      <td>0.27</td>
+      <td>0.1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1968-01-18 19:20:00+00:00</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1968-01-18</td>
+      <td>12:20</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0700</td>
+      <td>T</td>
+      <td>NaN</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>210.0</td>
+      <td>NaN</td>
+      <td>63.5</td>
+      <td>0.29</td>
+      <td>0.5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1968-05-15 18:30:00+00:00</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1968-05-15</td>
+      <td>12:30</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>NaN</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>155.0</td>
+      <td>156.0</td>
+      <td>151.0</td>
+      <td>0.21</td>
+      <td>0.6</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1968-07-26 20:40:00+00:00</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1968-07-26</td>
+      <td>14:40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>NaN</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>189.0</td>
+      <td>188.0</td>
+      <td>135.0</td>
+      <td>0.26</td>
+      <td>0.3</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1972-12-08 23:15:00+00:00</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1972-12-08</td>
+      <td>16:15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0700</td>
+      <td>T</td>
+      <td>NaN</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>NaT</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1988-11-28</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0700</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>NaT</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1989-04-27</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>NaT</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1989-07-28</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>NaT</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1989-08-31</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>NaT</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1989-10-05</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>345 rows × 60 columns</p>
+</div></div>
+</div>
+<p>Show the data types of the columns in the resulting data frame.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">wq_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+agency_cd                      object
+site_no                        object
+sample_dt                      object
+sample_tm                      object
+sample_end_dt                 float64
+sample_end_tm                 float64
+sample_start_time_datum_cd     object
+tm_datum_rlbty_cd              object
+coll_ent_cd                    object
+medium_cd                      object
+project_cd                     object
+aqfr_cd                       float64
+tu_id                         float64
+body_part_id                  float64
+hyd_cond_cd                    object
+samp_type_cd                    int64
+hyd_event_cd                    int64
+sample_lab_cm_txt             float64
+p00003                        float64
+p00004                        float64
+p00009                        float64
+p00010                        float64
+p00020                         object
+p00028                        float64
+p00060                        float64
+p00061                        float64
+p00065                        float64
+p00095                        float64
+p00191                        float64
+p00400                        float64
+p00405                        float64
+p00410                        float64
+p00440                        float64
+p00445                        float64
+p00618                        float64
+p00660                        float64
+p00900                        float64
+p00902                        float64
+p00915                        float64
+p00925                        float64
+p00931                        float64
+p00932                        float64
+p00933                        float64
+p00940                        float64
+p00945                        float64
+p00955                        float64
+p30207                        float64
+p30208                        float64
+p30209                        float64
+p50280                         object
+p70300                        float64
+p70301                        float64
+p70302                        float64
+p70303                        float64
+p71851                        float64
+p71999                        float64
+p81903                        float64
+p82398                        float64
+p84164                        float64
+p99111                        float64
+dtype: object
+</pre></div></div>
+</div>
+<p>The other part of the result returned from the <code class="docutils literal notranslate"><span class="pre">get_qwdata()</span></code> function is a metadata object that contains information about the query that was executed to return the data. For example, you can access the URL that was assembled to retrieve the requested data from the USGS web service. The USGS web service responses contain a descriptive header that defines and can be helpful in interpreting the contents of the response.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The query URL used to retrieve the data from NWIS was: &#39;</span> <span class="o">+</span> <span class="n">wq_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The query URL used to retrieve the data from NWIS was: https://nwis.waterdata.usgs.gov/nwis/qwdata?site_no=10109000&amp;qw_sample_wide=qw_sample_wide&amp;agency_cd=USGS&amp;format=rdb&amp;pm_cd_compare=Greater+than&amp;inventory_output=0&amp;rdb_inventory_output=file&amp;TZoutput=0&amp;rdb_qw_attributes=expanded&amp;date_format=YYYY-MM-DD&amp;rdb_compression=value&amp;submitted_form=brief_list
+</pre></div></div>
+</div>
+</section>
+<section id="Additional-Examples">
+<h2>Additional Examples<a class="headerlink" href="#Additional-Examples" title="Link to this heading"></a></h2>
+<section id="Example-2:-Get-water-quality-sample-data-for-multiple-sites-for-a-single-parameter">
+<h3>Example 2: Get water quality sample data for multiple sites for a single parameter<a class="headerlink" href="#Example-2:-Get-water-quality-sample-data-for-multiple-sites-for-a-single-parameter" title="Link to this heading"></a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">site_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;04024430&#39;</span><span class="p">,</span> <span class="s1">&#39;04024000&#39;</span><span class="p">]</span>
+<span class="n">parameter_code</span> <span class="o">=</span> <span class="s1">&#39;00065&#39;</span>
+<span class="n">wq_multi_site</span> <span class="o">=</span> <span class="n">nwis</span><span class="o">.</span><span class="n">get_qwdata</span><span class="p">(</span><span class="n">sites</span><span class="o">=</span><span class="n">site_ids</span><span class="p">,</span> <span class="n">parameterCd</span><span class="o">=</span><span class="n">parameter_code</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Retrieved data for &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wq_multi_site</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="s1">&#39; samples.&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">wq_multi_site</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/runner/.local/lib/python3.10/site-packages/dataretrieval/nwis.py:192: UserWarning: WARNING: Starting in March 2024, the NWIS qw data endpoint is retiring and no longer receives updates. For more information, refer to https://waterdata.usgs.gov.nwis/qwdata and https://doi-usgs.github.io/dataRetrieval/articles/Status.html or email CompTools@usgs.gov.
+  warnings.warn(
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Retrieved data for 281 samples.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>agency_cd</th>
+      <th>sample_dt</th>
+      <th>sample_tm</th>
+      <th>sample_end_dt</th>
+      <th>sample_end_tm</th>
+      <th>sample_start_time_datum_cd</th>
+      <th>tm_datum_rlbty_cd</th>
+      <th>coll_ent_cd</th>
+      <th>medium_cd</th>
+      <th>project_cd</th>
+      <th>aqfr_cd</th>
+      <th>tu_id</th>
+      <th>body_part_id</th>
+      <th>hyd_cond_cd</th>
+      <th>samp_type_cd</th>
+      <th>hyd_event_cd</th>
+      <th>sample_lab_cm_txt</th>
+      <th>p00065</th>
+    </tr>
+    <tr>
+      <th>site_no</th>
+      <th>datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">04024000</th>
+      <th>1984-04-24 14:30:00+00:00</th>
+      <td>USGS</td>
+      <td>1984-04-24</td>
+      <td>08:30</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>4.62</td>
+    </tr>
+    <tr>
+      <th>1984-06-19 15:15:00+00:00</th>
+      <td>USGS</td>
+      <td>1984-06-19</td>
+      <td>10:15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>6.43</td>
+    </tr>
+    <tr>
+      <th>1984-08-22 15:45:00+00:00</th>
+      <td>USGS</td>
+      <td>1984-08-22</td>
+      <td>10:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>3.24</td>
+    </tr>
+    <tr>
+      <th>1985-02-11 20:30:00+00:00</th>
+      <td>USGS</td>
+      <td>1985-02-11</td>
+      <td>14:30</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>3.51</td>
+    </tr>
+    <tr>
+      <th>2010-10-07 15:45:00+00:00</th>
+      <td>USGS</td>
+      <td>2010-10-07</td>
+      <td>10:45</td>
+      <td>2010-11-02</td>
+      <td>10:15</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR11NQ00E</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>3.11</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">04024430</th>
+      <th>1983-04-19 16:00:00+00:00</th>
+      <td>USGS</td>
+      <td>1983-04-19</td>
+      <td>10:00</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>A</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>8.83</td>
+    </tr>
+    <tr>
+      <th>1983-05-24 21:10:00+00:00</th>
+      <td>USGS</td>
+      <td>1983-05-24</td>
+      <td>16:10</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>5.64</td>
+    </tr>
+    <tr>
+      <th>1983-07-06 17:00:00+00:00</th>
+      <td>USGS</td>
+      <td>1983-07-06</td>
+      <td>12:00</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>12.59</td>
+    </tr>
+    <tr>
+      <th>1983-08-16 19:20:00+00:00</th>
+      <td>USGS</td>
+      <td>1983-08-16</td>
+      <td>14:20</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>5.23</td>
+    </tr>
+    <tr>
+      <th>2007-10-09 22:00:00+00:00</th>
+      <td>USGS</td>
+      <td>2007-10-09</td>
+      <td>17:00</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>SS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>7</td>
+      <td>NaN</td>
+      <td>10.92</td>
+    </tr>
+  </tbody>
+</table>
+<p>281 rows × 18 columns</p>
+</div></div>
+</div>
+<p>The following example is the same as the previous example but with multi index turned off (multi_index=False)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">site_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;04024430&#39;</span><span class="p">,</span> <span class="s1">&#39;04024000&#39;</span><span class="p">]</span>
+<span class="n">parameter_code</span> <span class="o">=</span> <span class="s1">&#39;00065&#39;</span>
+<span class="n">wq_multi_site</span> <span class="o">=</span> <span class="n">nwis</span><span class="o">.</span><span class="n">get_qwdata</span><span class="p">(</span><span class="n">sites</span><span class="o">=</span><span class="n">site_ids</span><span class="p">,</span> <span class="n">parameterCd</span><span class="o">=</span><span class="n">parameter_code</span><span class="p">,</span> <span class="n">multi_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Retrieved data for &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wq_multi_site</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="s1">&#39; samples.&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">wq_multi_site</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/runner/.local/lib/python3.10/site-packages/dataretrieval/nwis.py:192: UserWarning: WARNING: Starting in March 2024, the NWIS qw data endpoint is retiring and no longer receives updates. For more information, refer to https://waterdata.usgs.gov.nwis/qwdata and https://doi-usgs.github.io/dataRetrieval/articles/Status.html or email CompTools@usgs.gov.
+  warnings.warn(
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Retrieved data for 281 samples.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>agency_cd</th>
+      <th>site_no</th>
+      <th>sample_dt</th>
+      <th>sample_tm</th>
+      <th>sample_end_dt</th>
+      <th>sample_end_tm</th>
+      <th>sample_start_time_datum_cd</th>
+      <th>tm_datum_rlbty_cd</th>
+      <th>coll_ent_cd</th>
+      <th>medium_cd</th>
+      <th>project_cd</th>
+      <th>aqfr_cd</th>
+      <th>tu_id</th>
+      <th>body_part_id</th>
+      <th>hyd_cond_cd</th>
+      <th>samp_type_cd</th>
+      <th>hyd_event_cd</th>
+      <th>sample_lab_cm_txt</th>
+      <th>p00065</th>
+    </tr>
+    <tr>
+      <th>datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1982-11-02 20:10:00+00:00</th>
+      <td>USGS</td>
+      <td>04024430</td>
+      <td>1982-11-02</td>
+      <td>14:10</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>USGS-GAL</td>
+      <td>WS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>A</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>5.72</td>
+    </tr>
+    <tr>
+      <th>1983-01-18 18:30:00+00:00</th>
+      <td>USGS</td>
+      <td>04024430</td>
+      <td>1983-01-18</td>
+      <td>12:30</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>USGS-GAL</td>
+      <td>WS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>A</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>6.17</td>
+    </tr>
+    <tr>
+      <th>1983-04-19 16:00:00+00:00</th>
+      <td>USGS</td>
+      <td>04024430</td>
+      <td>1983-04-19</td>
+      <td>10:00</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>A</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>8.83</td>
+    </tr>
+    <tr>
+      <th>1983-05-24 21:10:00+00:00</th>
+      <td>USGS</td>
+      <td>04024430</td>
+      <td>1983-05-24</td>
+      <td>16:10</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>5.64</td>
+    </tr>
+    <tr>
+      <th>1983-07-06 17:00:00+00:00</th>
+      <td>USGS</td>
+      <td>04024430</td>
+      <td>1983-07-06</td>
+      <td>12:00</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>12.59</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2023-10-16 16:40:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2023-10-16</td>
+      <td>11:40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>Scanlon</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>3.51</td>
+    </tr>
+    <tr>
+      <th>2023-11-20 15:25:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2023-11-20</td>
+      <td>09:25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>Scanlon</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>4.21</td>
+    </tr>
+    <tr>
+      <th>2023-12-18 16:40:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2023-12-18</td>
+      <td>10:40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>Scanlon</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>4.00</td>
+    </tr>
+    <tr>
+      <th>2024-01-08 17:00:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2024-01-08</td>
+      <td>11:00</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>Scanlon</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>4.54</td>
+    </tr>
+    <tr>
+      <th>2024-02-05 15:05:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2024-02-05</td>
+      <td>09:05</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>Scanlon</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>3.85</td>
+    </tr>
+  </tbody>
+</table>
+<p>281 rows × 19 columns</p>
+</div></div>
+</div>
+</section>
+<section id="Example-3:-Retrieve-water-quality-sample-data-for-multiple-sites,-including-a-list-of-parameters,-within-a-time-period-defined-by-start-and-end-dates">
+<h3>Example 3: Retrieve water quality sample data for multiple sites, including a list of parameters, within a time period defined by start and end dates<a class="headerlink" href="#Example-3:-Retrieve-water-quality-sample-data-for-multiple-sites,-including-a-list-of-parameters,-within-a-time-period-defined-by-start-and-end-dates" title="Link to this heading"></a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">site_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;04024430&#39;</span><span class="p">,</span> <span class="s1">&#39;04024000&#39;</span><span class="p">]</span>
+<span class="n">parameterCd</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;34247&#39;</span><span class="p">,</span> <span class="s1">&#39;30234&#39;</span><span class="p">,</span> <span class="s1">&#39;32104&#39;</span><span class="p">,</span> <span class="s1">&#39;34220&#39;</span><span class="p">]</span>
+<span class="n">startDate</span> <span class="o">=</span> <span class="s1">&#39;2012-01-01&#39;</span>
+<span class="n">endDate</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">wq_data2</span> <span class="o">=</span> <span class="n">nwis</span><span class="o">.</span><span class="n">get_qwdata</span><span class="p">(</span><span class="n">sites</span><span class="o">=</span><span class="n">site_ids</span><span class="p">,</span> <span class="n">parameterCd</span><span class="o">=</span><span class="n">parameterCd</span><span class="p">,</span>
+                           <span class="n">start</span><span class="o">=</span><span class="n">startDate</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">endDate</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Retrieved data for &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wq_multi_site</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="s1">&#39; samples.&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">wq_data2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/runner/.local/lib/python3.10/site-packages/dataretrieval/nwis.py:192: UserWarning: WARNING: Starting in March 2024, the NWIS qw data endpoint is retiring and no longer receives updates. For more information, refer to https://waterdata.usgs.gov.nwis/qwdata and https://doi-usgs.github.io/dataRetrieval/articles/Status.html or email CompTools@usgs.gov.
+  warnings.warn(
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Retrieved data for 281 samples.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>agency_cd</th>
+      <th>sample_dt</th>
+      <th>sample_tm</th>
+      <th>sample_end_dt</th>
+      <th>sample_end_tm</th>
+      <th>sample_start_time_datum_cd</th>
+      <th>tm_datum_rlbty_cd</th>
+      <th>coll_ent_cd</th>
+      <th>medium_cd</th>
+      <th>project_cd</th>
+      <th>...</th>
+      <th>tu_id</th>
+      <th>body_part_id</th>
+      <th>hyd_cond_cd</th>
+      <th>samp_type_cd</th>
+      <th>hyd_event_cd</th>
+      <th>sample_lab_cm_txt</th>
+      <th>p30234</th>
+      <th>p32104</th>
+      <th>p34220</th>
+      <th>p34247</th>
+    </tr>
+    <tr>
+      <th>site_no</th>
+      <th>datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="34" valign="top">04024000</th>
+      <th>2012-01-25 14:40:00+00:00</th>
+      <td>USGS</td>
+      <td>2012-01-25</td>
+      <td>08:40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR12NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>9</td>
+      <td>B</td>
+      <td>A-0270113 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-02-22 14:45:00+00:00</th>
+      <td>USGS</td>
+      <td>2012-02-22</td>
+      <td>08:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR12NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>9</td>
+      <td>B</td>
+      <td>A-0540032 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-03-12 13:55:00+00:00</th>
+      <td>USGS</td>
+      <td>2012-03-12</td>
+      <td>08:55</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR12NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>9</td>
+      <td>B</td>
+      <td>A-0740087 ** Second GCC bottle (Sch 4433) is a...</td>
+      <td>&lt; 0.16</td>
+      <td>0.01 bt</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-03-27 13:55:00+00:00</th>
+      <td>USGS</td>
+      <td>2012-03-27</td>
+      <td>08:55</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR12NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A</td>
+      <td>A-0900013 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-04-17 14:20:00+00:00</th>
+      <td>USGS</td>
+      <td>2012-04-17</td>
+      <td>09:20</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR12NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8</td>
+      <td>9</td>
+      <td>J</td>
+      <td>A-1110047 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-04-25 15:47:00+00:00</th>
+      <td>USGS</td>
+      <td>2012-04-25</td>
+      <td>10:47</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR12NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A-1180039 **Second GCC bottle (SCH4433) is and...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-05-17 13:40:00+00:00</th>
+      <td>USGS</td>
+      <td>2012-05-17</td>
+      <td>08:40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR12NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A-1390189 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-05-24 18:23:00+00:00</th>
+      <td>USGS</td>
+      <td>2012-05-24</td>
+      <td>13:23</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR12NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8</td>
+      <td>9</td>
+      <td>J</td>
+      <td>A-1500157 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-06-14 14:15:00+00:00</th>
+      <td>USGS</td>
+      <td>2012-06-14</td>
+      <td>09:15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR12NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A-1710114 **Second GCC bottle (sch. 4433) is a...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-06-20 18:43:00+00:00</th>
+      <td>USGS</td>
+      <td>2012-06-20</td>
+      <td>13:43</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR12NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7</td>
+      <td>9</td>
+      <td>J</td>
+      <td>A-1740217 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-07-17 14:50:00+00:00</th>
+      <td>USGS</td>
+      <td>2012-07-17</td>
+      <td>09:50</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR12NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A-2010133 **Second GCC bottle (sch. 4433) is a...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-08-13 14:55:00+00:00</th>
+      <td>USGS</td>
+      <td>2012-08-13</td>
+      <td>09:55</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR12NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A-2280252 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-09-04 13:45:00+00:00</th>
+      <td>USGS</td>
+      <td>2012-09-04</td>
+      <td>08:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR12NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A-2500209 ***Second GCC bottle (sch4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-10-10 14:40:00+00:00</th>
+      <td>USGS</td>
+      <td>2012-10-10</td>
+      <td>09:40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR13NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A-2860068 ***Second GCC bottle (sch 4433) is a...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-11-14 14:45:00+00:00</th>
+      <td>USGS</td>
+      <td>2012-11-14</td>
+      <td>08:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR13NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A-3240067 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-12-20 16:50:00+00:00</th>
+      <td>USGS</td>
+      <td>2012-12-20</td>
+      <td>10:50</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR13NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>B</td>
+      <td>A-3560065 ***Second GCC bottle (sch 4433) is a...</td>
+      <td>&lt; 0.16</td>
+      <td>0.01 bt</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2013-01-16 14:30:00+00:00</th>
+      <td>USGS</td>
+      <td>2013-01-16</td>
+      <td>08:30</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR13NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>B</td>
+      <td>A-0180147 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>M  bt</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2013-04-27 15:40:00+00:00</th>
+      <td>USGS</td>
+      <td>2013-04-27</td>
+      <td>10:40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GR13NK00E</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8</td>
+      <td>9</td>
+      <td>A</td>
+      <td>A-1220123 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2014-04-21 18:00:00+00:00</th>
+      <td>USGS</td>
+      <td>2014-04-21</td>
+      <td>13:00</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>GR14NK00F</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8</td>
+      <td>9</td>
+      <td>A</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>E 0.01 btc</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2014-07-09 14:30:00+00:00</th>
+      <td>USGS</td>
+      <td>2014-07-09</td>
+      <td>09:30</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>GR14NK00F</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2014-10-21 15:00:00+00:00</th>
+      <td>USGS</td>
+      <td>2014-10-21</td>
+      <td>10:00</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>GR15NK00F</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2015-04-28 17:45:00+00:00</th>
+      <td>USGS</td>
+      <td>2015-04-28</td>
+      <td>12:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>MN-00300</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>L-1210024 Received April 30, 2015</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2015-10-20 16:55:00+00:00</th>
+      <td>USGS</td>
+      <td>2015-10-20</td>
+      <td>11:55</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>MN-00300</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>MM-44934A</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2016-02-02 15:45:00+00:00</th>
+      <td>USGS</td>
+      <td>2016-02-02</td>
+      <td>09:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>MN-00300</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>B</td>
+      <td>MM-45749A</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2016-06-08 15:35:00+00:00</th>
+      <td>USGS</td>
+      <td>2016-06-08</td>
+      <td>10:35</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>MN-00300</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>MM-47133A</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2016-07-05 14:55:00+00:00</th>
+      <td>USGS</td>
+      <td>2016-07-05</td>
+      <td>09:55</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>MN-00300</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>MM-47591A</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2016-11-15 17:05:00+00:00</th>
+      <td>USGS</td>
+      <td>2016-11-15</td>
+      <td>11:05</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>MN-00300</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2017-02-01 17:05:00+00:00</th>
+      <td>USGS</td>
+      <td>2017-02-01</td>
+      <td>11:05</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>MN-00300</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>B</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2017-04-04 17:05:00+00:00</th>
+      <td>USGS</td>
+      <td>2017-04-04</td>
+      <td>12:05</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>MN-00300</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2017-07-05 16:50:00+00:00</th>
+      <td>USGS</td>
+      <td>2017-07-05</td>
+      <td>11:50</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>MN-00300</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>0.01 bt</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2017-11-27 16:40:00+00:00</th>
+      <td>USGS</td>
+      <td>2017-11-27</td>
+      <td>10:40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>MN-00300</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>L-3330046 Numerical result and or metadata rev...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2018-02-06 14:45:00+00:00</th>
+      <td>USGS</td>
+      <td>2018-02-06</td>
+      <td>08:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>MN-00300</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>B</td>
+      <td>L-0380062 Numerical result and or metadata rev...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2018-05-01 16:05:00+00:00</th>
+      <td>USGS</td>
+      <td>2018-05-01</td>
+      <td>11:05</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>00GQ41400</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>L-1230062 Numerical result and or metadata rev...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2018-07-09 16:25:00+00:00</th>
+      <td>USGS</td>
+      <td>2018-07-09</td>
+      <td>11:25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>00GQ41400</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6</td>
+      <td>9</td>
+      <td>9</td>
+      <td>L-1920083 Numerical result and or metadata rev...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">04024430</th>
+      <th>2014-04-30 18:40:00+00:00</th>
+      <td>USGS</td>
+      <td>2014-04-30</td>
+      <td>13:40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>F6X7H</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7</td>
+      <td>9</td>
+      <td>J</td>
+      <td>NaN</td>
+      <td>0.10 n</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2014-06-10 13:50:00+00:00</th>
+      <td>USGS</td>
+      <td>2014-06-10</td>
+      <td>08:50</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>F6X7H</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2014-10-29 19:30:00+00:00</th>
+      <td>USGS</td>
+      <td>2014-10-29</td>
+      <td>14:30</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GLRI TOX</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>0.01 bt</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2014-11-12 19:30:00+00:00</th>
+      <td>USGS</td>
+      <td>2014-11-12</td>
+      <td>13:30</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>GLRI TOX</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+  </tbody>
+</table>
+<p>38 rows × 21 columns</p>
+</div></div>
+</div>
+<p>The following example is the same as the previous example but with multi index turned off (multi_index=False)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">site_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;04024430&#39;</span><span class="p">,</span> <span class="s1">&#39;04024000&#39;</span><span class="p">]</span>
+<span class="n">parameterCd</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;34247&#39;</span><span class="p">,</span> <span class="s1">&#39;30234&#39;</span><span class="p">,</span> <span class="s1">&#39;32104&#39;</span><span class="p">,</span> <span class="s1">&#39;34220&#39;</span><span class="p">]</span>
+<span class="n">startDate</span> <span class="o">=</span> <span class="s1">&#39;2012-01-01&#39;</span>
+<span class="n">endDate</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">wq_data2</span> <span class="o">=</span> <span class="n">nwis</span><span class="o">.</span><span class="n">get_qwdata</span><span class="p">(</span><span class="n">sites</span><span class="o">=</span><span class="n">site_ids</span><span class="p">,</span> <span class="n">parameterCd</span><span class="o">=</span><span class="n">parameterCd</span><span class="p">,</span>
+                           <span class="n">start</span><span class="o">=</span><span class="n">startDate</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">endDate</span><span class="p">,</span> <span class="n">multi_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Retrieved data for &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wq_multi_site</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="s1">&#39; samples.&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">wq_data2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/runner/.local/lib/python3.10/site-packages/dataretrieval/nwis.py:192: UserWarning: WARNING: Starting in March 2024, the NWIS qw data endpoint is retiring and no longer receives updates. For more information, refer to https://waterdata.usgs.gov.nwis/qwdata and https://doi-usgs.github.io/dataRetrieval/articles/Status.html or email CompTools@usgs.gov.
+  warnings.warn(
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Retrieved data for 281 samples.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>agency_cd</th>
+      <th>site_no</th>
+      <th>sample_dt</th>
+      <th>sample_tm</th>
+      <th>sample_end_dt</th>
+      <th>sample_end_tm</th>
+      <th>sample_start_time_datum_cd</th>
+      <th>tm_datum_rlbty_cd</th>
+      <th>coll_ent_cd</th>
+      <th>medium_cd</th>
+      <th>...</th>
+      <th>tu_id</th>
+      <th>body_part_id</th>
+      <th>hyd_cond_cd</th>
+      <th>samp_type_cd</th>
+      <th>hyd_event_cd</th>
+      <th>sample_lab_cm_txt</th>
+      <th>p30234</th>
+      <th>p32104</th>
+      <th>p34220</th>
+      <th>p34247</th>
+    </tr>
+    <tr>
+      <th>datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2012-01-25 14:40:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2012-01-25</td>
+      <td>08:40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>9</td>
+      <td>B</td>
+      <td>A-0270113 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-02-22 14:45:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2012-02-22</td>
+      <td>08:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>9</td>
+      <td>B</td>
+      <td>A-0540032 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-03-12 13:55:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2012-03-12</td>
+      <td>08:55</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>9</td>
+      <td>B</td>
+      <td>A-0740087 ** Second GCC bottle (Sch 4433) is a...</td>
+      <td>&lt; 0.16</td>
+      <td>0.01 bt</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-03-27 13:55:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2012-03-27</td>
+      <td>08:55</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A</td>
+      <td>A-0900013 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-04-17 14:20:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2012-04-17</td>
+      <td>09:20</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8</td>
+      <td>9</td>
+      <td>J</td>
+      <td>A-1110047 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-04-25 15:47:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2012-04-25</td>
+      <td>10:47</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A-1180039 **Second GCC bottle (SCH4433) is and...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-05-17 13:40:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2012-05-17</td>
+      <td>08:40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A-1390189 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-05-24 18:23:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2012-05-24</td>
+      <td>13:23</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8</td>
+      <td>9</td>
+      <td>J</td>
+      <td>A-1500157 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-06-14 14:15:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2012-06-14</td>
+      <td>09:15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A-1710114 **Second GCC bottle (sch. 4433) is a...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-06-20 18:43:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2012-06-20</td>
+      <td>13:43</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7</td>
+      <td>9</td>
+      <td>J</td>
+      <td>A-1740217 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-07-17 14:50:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2012-07-17</td>
+      <td>09:50</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A-2010133 **Second GCC bottle (sch. 4433) is a...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-08-13 14:55:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2012-08-13</td>
+      <td>09:55</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A-2280252 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-09-04 13:45:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2012-09-04</td>
+      <td>08:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A-2500209 ***Second GCC bottle (sch4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-10-10 14:40:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2012-10-10</td>
+      <td>09:40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A-2860068 ***Second GCC bottle (sch 4433) is a...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-11-14 14:45:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2012-11-14</td>
+      <td>08:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>9</td>
+      <td>9</td>
+      <td>A-3240067 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2012-12-20 16:50:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2012-12-20</td>
+      <td>10:50</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>B</td>
+      <td>A-3560065 ***Second GCC bottle (sch 4433) is a...</td>
+      <td>&lt; 0.16</td>
+      <td>0.01 bt</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2013-01-16 14:30:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2013-01-16</td>
+      <td>08:30</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>B</td>
+      <td>A-0180147 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>M  bt</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2013-04-27 15:40:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2013-04-27</td>
+      <td>10:40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8</td>
+      <td>9</td>
+      <td>A</td>
+      <td>A-1220123 **Second GCC bottle (sch 4433) is an...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2014-04-21 18:00:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2014-04-21</td>
+      <td>13:00</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8</td>
+      <td>9</td>
+      <td>A</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>E 0.01 btc</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2014-04-30 18:40:00+00:00</th>
+      <td>USGS</td>
+      <td>04024430</td>
+      <td>2014-04-30</td>
+      <td>13:40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7</td>
+      <td>9</td>
+      <td>J</td>
+      <td>NaN</td>
+      <td>0.10 n</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2014-06-10 13:50:00+00:00</th>
+      <td>USGS</td>
+      <td>04024430</td>
+      <td>2014-06-10</td>
+      <td>08:50</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2014-07-09 14:30:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2014-07-09</td>
+      <td>09:30</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2014-10-21 15:00:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2014-10-21</td>
+      <td>10:00</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2014-10-29 19:30:00+00:00</th>
+      <td>USGS</td>
+      <td>04024430</td>
+      <td>2014-10-29</td>
+      <td>14:30</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>0.01 bt</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2014-11-12 19:30:00+00:00</th>
+      <td>USGS</td>
+      <td>04024430</td>
+      <td>2014-11-12</td>
+      <td>13:30</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2015-04-28 17:45:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2015-04-28</td>
+      <td>12:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>L-1210024 Received April 30, 2015</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2015-10-20 16:55:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2015-10-20</td>
+      <td>11:55</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>MM-44934A</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2016-02-02 15:45:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2016-02-02</td>
+      <td>09:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>B</td>
+      <td>MM-45749A</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2016-06-08 15:35:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2016-06-08</td>
+      <td>10:35</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>MM-47133A</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2016-07-05 14:55:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2016-07-05</td>
+      <td>09:55</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>MM-47591A</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2016-11-15 17:05:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2016-11-15</td>
+      <td>11:05</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2017-02-01 17:05:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2017-02-01</td>
+      <td>11:05</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>B</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2017-04-04 17:05:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2017-04-04</td>
+      <td>12:05</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2017-07-05 16:50:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2017-07-05</td>
+      <td>11:50</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>&lt; 0.16</td>
+      <td>0.01 bt</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2017-11-27 16:40:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2017-11-27</td>
+      <td>10:40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>L-3330046 Numerical result and or metadata rev...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2018-02-06 14:45:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2018-02-06</td>
+      <td>08:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>9</td>
+      <td>B</td>
+      <td>L-0380062 Numerical result and or metadata rev...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2018-05-01 16:05:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2018-05-01</td>
+      <td>11:05</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>9</td>
+      <td>9</td>
+      <td>L-1230062 Numerical result and or metadata rev...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+    <tr>
+      <th>2018-07-09 16:25:00+00:00</th>
+      <td>USGS</td>
+      <td>04024000</td>
+      <td>2018-07-09</td>
+      <td>11:25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0500</td>
+      <td>K</td>
+      <td>USGSMNWC</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6</td>
+      <td>9</td>
+      <td>9</td>
+      <td>L-1920083 Numerical result and or metadata rev...</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.16</td>
+      <td>&lt; 0.02</td>
+      <td>&lt; 0.02</td>
+    </tr>
+  </tbody>
+</table>
+<p>38 rows × 22 columns</p>
+</div></div>
+</div>
+</section>
+<section id="Example-4:-Retrieve-water-quality-sample-data-for-one-site-in-serial-format">
+<h3>Example 4: Retrieve water quality sample data for one site in serial format<a class="headerlink" href="#Example-4:-Retrieve-water-quality-sample-data-for-one-site-in-serial-format" title="Link to this heading"></a></h3>
+<p>Each row in the resulting table represents a single observation of a single parameters. Each sample may be analyzed for multiple parameters and so a single water quality sample can result in multiple rows in serial format.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">siteID</span> <span class="o">=</span> <span class="s1">&#39;10109000&#39;</span>
+<span class="n">wq_data</span> <span class="o">=</span> <span class="n">nwis</span><span class="o">.</span><span class="n">get_qwdata</span><span class="p">(</span><span class="n">sites</span><span class="o">=</span><span class="n">siteID</span><span class="p">,</span> <span class="n">wide_format</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Retrieved data for &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wq_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="s1">&#39; sample results.&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">wq_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/runner/.local/lib/python3.10/site-packages/dataretrieval/nwis.py:192: UserWarning: WARNING: Starting in March 2024, the NWIS qw data endpoint is retiring and no longer receives updates. For more information, refer to https://waterdata.usgs.gov.nwis/qwdata and https://doi-usgs.github.io/dataRetrieval/articles/Status.html or email CompTools@usgs.gov.
+  warnings.warn(
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Retrieved data for 2465 sample results.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/runner/.local/lib/python3.10/site-packages/dataretrieval/utils.py:90: UserWarning: Warning: 36 incomplete dates found, consider setting datetime_index to False.
+  warnings.warn(
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>agency_cd</th>
+      <th>site_no</th>
+      <th>sample_dt</th>
+      <th>sample_tm</th>
+      <th>sample_end_dt</th>
+      <th>sample_end_tm</th>
+      <th>sample_start_time_datum_cd</th>
+      <th>tm_datum_rlbty_cd</th>
+      <th>coll_ent_cd</th>
+      <th>medium_cd</th>
+      <th>...</th>
+      <th>dqi_cd</th>
+      <th>rpt_lev_va</th>
+      <th>rpt_lev_cd</th>
+      <th>lab_std_va</th>
+      <th>prep_set_no</th>
+      <th>prep_dt</th>
+      <th>anl_set_no</th>
+      <th>anl_dt</th>
+      <th>result_lab_cm_tx</th>
+      <th>anl_ent_cd</th>
+    </tr>
+    <tr>
+      <th>datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1967-09-13 13:35:00+00:00</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1967-09-13</td>
+      <td>07:35</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>NaN</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>A</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1967-09-13 13:35:00+00:00</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1967-09-13</td>
+      <td>07:35</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>NaN</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>A</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1967-09-13 13:35:00+00:00</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1967-09-13</td>
+      <td>07:35</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>NaN</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>A</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1967-09-13 13:35:00+00:00</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1967-09-13</td>
+      <td>07:35</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>NaN</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>A</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1967-09-13 13:35:00+00:00</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1967-09-13</td>
+      <td>07:35</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>NaN</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>A</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>NaT</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1989-10-05</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>A</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>NaT</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1989-10-05</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>A</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>NaT</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1989-10-05</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>A</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>NaT</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1989-10-05</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>A</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>NaT</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1989-10-05</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-0600</td>
+      <td>T</td>
+      <td>USGS-WRD</td>
+      <td>WS</td>
+      <td>...</td>
+      <td>A</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>2465 rows × 33 columns</p>
+</div></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="USGS_dataretrieval_UnitValues_Examples.html" class="btn btn-neutral float-left" title="USGS dataretrieval Python Package get_iv() Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="USGS_dataretrieval_WaterUse_Examples.html" class="btn btn-neutral float-right" title="USGS dataretrieval Python Package get_water_use() Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

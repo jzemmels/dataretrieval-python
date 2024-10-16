@@ -1,0 +1,1011 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>USGS dataretrieval Python Package get_discharge_measurements() Examples &mdash; dataretrieval 0.1.dev1+g64b0609 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0d7da1c0"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="USGS dataretrieval Python Package get_pmcodes() Examples" href="USGS_dataretrieval_ParameterCodes_Examples.html" />
+    <link rel="prev" title="USGS dataretrieval Python Package get_gwlevels() Examples" href="USGS_dataretrieval_GroundwaterLevels_Examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            dataretrieval
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../meta/installing.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#simple-uses-of-the-dataretrieval-package">Simple uses of the <code class="docutils literal notranslate"><span class="pre">dataretrieval</span></code> package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#example-notebooks-from-hydroshare">Example Notebooks from Hydroshare</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_DailyValues_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_dv()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_GroundwaterLevels_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_gwlevels()</span></code> Examples</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_discharge_measurements()</span></code> Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Install-the-Package">Install the Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Basic-Usage">Basic Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Interpreting-the-Result">Interpreting the Result</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Additional-Examples">Additional Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_ParameterCodes_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_pmcodes()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_Peaks_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_discharge_peaks()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_Ratings_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_ratings()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_SiteInfo_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_info()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_SiteInventory_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">what_sites()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_Statistics_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_stats()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_UnitValues_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_iv()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_WaterSamples_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_qwdata()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="USGS_dataretrieval_WaterUse_Examples.html">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_water_use()</span></code> Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#using-dataretrieval-to-obtain-nation-trends-in-peak-annual-streamflow">Using <code class="docutils literal notranslate"><span class="pre">dataretrieval</span></code> to obtain nation trends in peak annual streamflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#duplicating-the-r-dataretrieval-vignettes-functionality">Duplicating the R <code class="docutils literal notranslate"><span class="pre">dataRetrieval</span></code> vignettes functionality</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../meta/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../meta/license.html">License and Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">API reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dataretrieval</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Examples</a></li>
+      <li class="breadcrumb-item active">USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_discharge_measurements()</span></code> Examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/USGS_dataretrieval_Measurements_Examples.nblink.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="USGS-dataretrieval-Python-Package-get_discharge_measurements()-Examples">
+<h1>USGS dataretrieval Python Package <code class="docutils literal notranslate"><span class="pre">get_discharge_measurements()</span></code> Examples<a class="headerlink" href="#USGS-dataretrieval-Python-Package-get_discharge_measurements()-Examples" title="Link to this heading"></a></h1>
+<p>This notebook provides examples of using the Python dataretrieval package to retrieve surface water discharge measurement data for a United States Geological Survey (USGS) monitoring site. The dataretrieval package provides a collection of functions to get data from the USGS National Water Information System (NWIS) and other online sources of hydrology and water quality data, including the United States Environmental Protection Agency (USEPA).</p>
+<section id="Install-the-Package">
+<h2>Install the Package<a class="headerlink" href="#Install-the-Package" title="Link to this heading"></a></h2>
+<p>Use the following code to install the package if it doesn’t exist already within your Jupyter Python environment.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>dataretrieval
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: dataretrieval in /home/runner/.local/lib/python3.10/site-packages (0.1.dev1+g64b0609)
+Requirement already satisfied: requests in /home/runner/.local/lib/python3.10/site-packages (from dataretrieval) (2.32.3)
+Requirement already satisfied: pandas==2.* in /home/runner/.local/lib/python3.10/site-packages (from dataretrieval) (2.2.3)
+Requirement already satisfied: numpy&gt;=1.22.4 in /home/runner/.local/lib/python3.10/site-packages (from pandas==2.*-&gt;dataretrieval) (2.1.2)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/.local/lib/python3.10/site-packages (from pandas==2.*-&gt;dataretrieval) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/lib/python3/dist-packages (from pandas==2.*-&gt;dataretrieval) (2022.1)
+Requirement already satisfied: tzdata&gt;=2022.7 in /home/runner/.local/lib/python3.10/site-packages (from pandas==2.*-&gt;dataretrieval) (2024.2)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/.local/lib/python3.10/site-packages (from requests-&gt;dataretrieval) (3.4.0)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/lib/python3/dist-packages (from requests-&gt;dataretrieval) (3.3)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/lib/python3/dist-packages (from requests-&gt;dataretrieval) (1.26.5)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/lib/python3/dist-packages (from requests-&gt;dataretrieval) (2020.6.20)
+Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3/dist-packages (from python-dateutil&gt;=2.8.2-&gt;pandas==2.*-&gt;dataretrieval) (1.16.0)
+</pre></div></div>
+</div>
+<p>Load the package so you can use it along with other packages used in this notebook.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dataretrieval</span> <span class="kn">import</span> <span class="n">nwis</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Basic-Usage">
+<h2>Basic Usage<a class="headerlink" href="#Basic-Usage" title="Link to this heading"></a></h2>
+<p>The dataretrieval package has several functions that allow you to retrieve data from different web services. This examples uses the <code class="docutils literal notranslate"><span class="pre">get_discharge_measurements()</span></code> function to retrieve surface water discharge measurements for a USGS monitoring site from NWIS. The function has the following arguments:</p>
+<p>Arguments (Additional arguments, if supplied, will be used as query parameters)</p>
+<ul class="simple">
+<li><p><strong>sites</strong> (list of strings): A list of USGS site codes to retrieve data for. If the qwdata parameter site_no is supplied, it will overwrite the sites parameter.</p></li>
+<li><p><strong>start</strong> (string): The beginning date of a period for which to retrieve measurements. If the qwdata parameter begin_date is supplied, it will overwrite the start parameter.</p></li>
+<li><p><strong>end</strong> (string): The ending date of a period for which to retrieve measurements. If the qwdata parameter end_date is supplied, it will overwrite the end parameter.</p></li>
+</ul>
+<p>Example 1: Get all of the surface water measurements for a single site</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurements1</span> <span class="o">=</span> <span class="n">nwis</span><span class="o">.</span><span class="n">get_discharge_measurements</span><span class="p">(</span><span class="n">sites</span><span class="o">=</span><span class="s2">&quot;10109000&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Retrieved &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">measurements1</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="s2">&quot; data values.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Retrieved 946 data values.
+</pre></div></div>
+</div>
+</section>
+<section id="Interpreting-the-Result">
+<h2>Interpreting the Result<a class="headerlink" href="#Interpreting-the-Result" title="Link to this heading"></a></h2>
+<p>The result of calling the <code class="docutils literal notranslate"><span class="pre">get_discharge_measurements()</span></code> function is an object that contains a Pandas data frame object and an associated metadata object. The Pandas data frame contains the discharge measurements for the time period requested.</p>
+<p>Once you’ve got the data frame, there’s several useful things you can do to explore the data.</p>
+<p>Display the data frame as a table</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">measurements1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>agency_cd</th>
+      <th>site_no</th>
+      <th>measurement_nu</th>
+      <th>measurement_dt</th>
+      <th>tz_cd</th>
+      <th>q_meas_used_fg</th>
+      <th>party_nm</th>
+      <th>site_visit_coll_agency_cd</th>
+      <th>gage_height_va</th>
+      <th>discharge_va</th>
+      <th>measured_rating_diff</th>
+      <th>gage_va_change</th>
+      <th>gage_va_time</th>
+      <th>control_type_cd</th>
+      <th>discharge_cd</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>146</td>
+      <td>1951-09-06 09:40:00</td>
+      <td>MST</td>
+      <td>Yes</td>
+      <td>AFP</td>
+      <td>USGS</td>
+      <td>0.94</td>
+      <td>17.0</td>
+      <td>Excellent</td>
+      <td>0.00</td>
+      <td>0.8</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>148</td>
+      <td>1951-12-13 12:10:00</td>
+      <td>MST</td>
+      <td>Yes</td>
+      <td>BSR</td>
+      <td>USGS</td>
+      <td>0.88</td>
+      <td>12.5</td>
+      <td>Unspecified</td>
+      <td>0.00</td>
+      <td>0.7</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>151</td>
+      <td>1952-04-23 10:25:00</td>
+      <td>MST</td>
+      <td>Yes</td>
+      <td>AFP</td>
+      <td>USGS</td>
+      <td>1.80</td>
+      <td>203.0</td>
+      <td>Good</td>
+      <td>-0.01</td>
+      <td>1.1</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>152</td>
+      <td>1952-05-22 01:35:00</td>
+      <td>MST</td>
+      <td>Yes</td>
+      <td>BSR</td>
+      <td>USGS</td>
+      <td>2.54</td>
+      <td>506.0</td>
+      <td>Excellent</td>
+      <td>0.00</td>
+      <td>0.2</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>153</td>
+      <td>1952-05-27 09:45:00</td>
+      <td>MST</td>
+      <td>Yes</td>
+      <td>WNJ</td>
+      <td>USGS</td>
+      <td>2.80</td>
+      <td>652.0</td>
+      <td>Good</td>
+      <td>-0.03</td>
+      <td>1.0</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>941</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1091</td>
+      <td>2024-06-07 09:35:00</td>
+      <td>MDT</td>
+      <td>Yes</td>
+      <td>EHQM</td>
+      <td>USGS</td>
+      <td>4.67</td>
+      <td>1060.0</td>
+      <td>Good</td>
+      <td>0.00</td>
+      <td>0.6</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>942</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1092</td>
+      <td>2024-07-02 08:35:04</td>
+      <td>MDT</td>
+      <td>Yes</td>
+      <td>EHQM</td>
+      <td>USGS</td>
+      <td>3.41</td>
+      <td>379.0</td>
+      <td>Good</td>
+      <td>0.00</td>
+      <td>0.3</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>943</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1093</td>
+      <td>2024-08-07 13:52:00</td>
+      <td>MDT</td>
+      <td>Yes</td>
+      <td>EHQM</td>
+      <td>USGS</td>
+      <td>2.90</td>
+      <td>194.0</td>
+      <td>Good</td>
+      <td>0.00</td>
+      <td>0.3</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>944</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1094</td>
+      <td>2024-09-11 13:34:04</td>
+      <td>MDT</td>
+      <td>Yes</td>
+      <td>EHQM</td>
+      <td>USGS</td>
+      <td>2.67</td>
+      <td>119.0</td>
+      <td>Fair</td>
+      <td>0.00</td>
+      <td>0.5</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>945</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1095</td>
+      <td>2024-09-11 14:19:00</td>
+      <td>MDT</td>
+      <td>Yes</td>
+      <td>EHQM</td>
+      <td>USGS</td>
+      <td>2.67</td>
+      <td>119.0</td>
+      <td>Good</td>
+      <td>0.02</td>
+      <td>0.3</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+  </tbody>
+</table>
+<p>946 rows × 15 columns</p>
+</div></div>
+</div>
+<p>Show the data types of the columns in the resulting data frame.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">measurements1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+agency_cd                     object
+site_no                       object
+measurement_nu                object
+measurement_dt                object
+tz_cd                         object
+q_meas_used_fg                object
+party_nm                      object
+site_visit_coll_agency_cd     object
+gage_height_va               float64
+discharge_va                 float64
+measured_rating_diff          object
+gage_va_change               float64
+gage_va_time                 float64
+control_type_cd               object
+discharge_cd                  object
+dtype: object
+</pre></div></div>
+</div>
+<p>The other part of the result returned from the <code class="docutils literal notranslate"><span class="pre">get_discharge_measurements()</span></code> function is a metadata object that contains information about the query that was executed to return the data. For example, you can access the URL that was assembled to retrieve the requested data from the USGS web service. The USGS web service responses contain a descriptive header that defines and can be helpful in interpreting the contents of the response.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The query URL used to retrieve the data from NWIS was: &quot;</span> <span class="o">+</span> <span class="n">measurements1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The query URL used to retrieve the data from NWIS was: https://nwis.waterdata.usgs.gov/nwis/measurements?site_no=10109000&amp;format=rdb
+</pre></div></div>
+</div>
+</section>
+<section id="Additional-Examples">
+<h2>Additional Examples<a class="headerlink" href="#Additional-Examples" title="Link to this heading"></a></h2>
+<p>Example 2: Get all of the surface water measurements between a start and end date</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurements2</span> <span class="o">=</span> <span class="n">nwis</span><span class="o">.</span><span class="n">get_discharge_measurements</span><span class="p">(</span><span class="n">sites</span><span class="o">=</span><span class="s2">&quot;10109000&quot;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2019-01-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2019-12-31&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Retrieved &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">measurements2</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="s2">&quot; data values.&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">measurements2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Retrieved 9 data values.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>agency_cd</th>
+      <th>site_no</th>
+      <th>measurement_nu</th>
+      <th>measurement_dt</th>
+      <th>tz_cd</th>
+      <th>q_meas_used_fg</th>
+      <th>party_nm</th>
+      <th>site_visit_coll_agency_cd</th>
+      <th>gage_height_va</th>
+      <th>discharge_va</th>
+      <th>measured_rating_diff</th>
+      <th>gage_va_change</th>
+      <th>gage_va_time</th>
+      <th>control_type_cd</th>
+      <th>discharge_cd</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1034</td>
+      <td>2019-01-29 12:57:30</td>
+      <td>MST</td>
+      <td>Yes</td>
+      <td>MJF</td>
+      <td>USGS</td>
+      <td>2.43</td>
+      <td>83.8</td>
+      <td>Good</td>
+      <td>-0.04</td>
+      <td>0.55</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1035</td>
+      <td>2019-03-11 13:29:00</td>
+      <td>MDT</td>
+      <td>Yes</td>
+      <td>MJF</td>
+      <td>USGS</td>
+      <td>2.46</td>
+      <td>94.2</td>
+      <td>Good</td>
+      <td>0.00</td>
+      <td>0.55</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1036</td>
+      <td>2019-04-23 15:39:06</td>
+      <td>MDT</td>
+      <td>Yes</td>
+      <td>MJF</td>
+      <td>USGS</td>
+      <td>3.29</td>
+      <td>337.0</td>
+      <td>Good</td>
+      <td>0.00</td>
+      <td>0.33</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1037</td>
+      <td>2019-06-12 08:02:06</td>
+      <td>MDT</td>
+      <td>Yes</td>
+      <td>MJF</td>
+      <td>USGS</td>
+      <td>4.09</td>
+      <td>709.0</td>
+      <td>Good</td>
+      <td>0.00</td>
+      <td>1.02</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1038</td>
+      <td>2019-07-30 11:57:07</td>
+      <td>MDT</td>
+      <td>Yes</td>
+      <td>MJF/BTR</td>
+      <td>USGS</td>
+      <td>2.84</td>
+      <td>167.0</td>
+      <td>Good</td>
+      <td>0.00</td>
+      <td>0.67</td>
+      <td>VegetationLight</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1039</td>
+      <td>2019-07-30 12:06:00</td>
+      <td>MDT</td>
+      <td>Yes</td>
+      <td>MJF/BTR</td>
+      <td>USGS</td>
+      <td>2.84</td>
+      <td>162.0</td>
+      <td>Good</td>
+      <td>0.00</td>
+      <td>0.83</td>
+      <td>VegetationLight</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1040</td>
+      <td>2019-09-16 10:59:09</td>
+      <td>MDT</td>
+      <td>Yes</td>
+      <td>MJF</td>
+      <td>USGS</td>
+      <td>2.64</td>
+      <td>126.0</td>
+      <td>Good</td>
+      <td>0.03</td>
+      <td>0.75</td>
+      <td>VegetationLight</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1041</td>
+      <td>2019-10-28 13:06:02</td>
+      <td>MDT</td>
+      <td>Yes</td>
+      <td>MJF/NML</td>
+      <td>USGS</td>
+      <td>2.64</td>
+      <td>133.0</td>
+      <td>Good</td>
+      <td>0.00</td>
+      <td>0.65</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>USGS</td>
+      <td>10109000</td>
+      <td>1042</td>
+      <td>2019-12-03 13:53:15</td>
+      <td>MST</td>
+      <td>Yes</td>
+      <td>NML</td>
+      <td>USGS</td>
+      <td>2.60</td>
+      <td>122.0</td>
+      <td>Good</td>
+      <td>0.02</td>
+      <td>0.60</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Example 3: Get all of the surface water measurements for multiple sites</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurements3</span> <span class="o">=</span> <span class="n">nwis</span><span class="o">.</span><span class="n">get_discharge_measurements</span><span class="p">(</span><span class="n">sites</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;01594440&quot;</span><span class="p">,</span> <span class="s2">&quot;040851325&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Retrieved &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">measurements3</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="s2">&quot; data values.&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">measurements3</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Retrieved 481 data values.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>agency_cd</th>
+      <th>site_no</th>
+      <th>measurement_nu</th>
+      <th>measurement_dt</th>
+      <th>tz_cd</th>
+      <th>q_meas_used_fg</th>
+      <th>party_nm</th>
+      <th>site_visit_coll_agency_cd</th>
+      <th>gage_height_va</th>
+      <th>discharge_va</th>
+      <th>measured_rating_diff</th>
+      <th>gage_va_change</th>
+      <th>gage_va_time</th>
+      <th>control_type_cd</th>
+      <th>discharge_cd</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>USGS</td>
+      <td>01594440</td>
+      <td>1</td>
+      <td>1955-04-07 14:05:00</td>
+      <td>EST</td>
+      <td>Yes</td>
+      <td>JMD</td>
+      <td>USGS</td>
+      <td>3.11</td>
+      <td>152.00</td>
+      <td>Good</td>
+      <td>0.00</td>
+      <td>1.5</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>USGS</td>
+      <td>01594440</td>
+      <td>2</td>
+      <td>1955-05-04 16:05:00</td>
+      <td>EST</td>
+      <td>Yes</td>
+      <td>DGB</td>
+      <td>USGS</td>
+      <td>2.76</td>
+      <td>127.00</td>
+      <td>Fair</td>
+      <td>-0.01</td>
+      <td>1.0</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>USGS</td>
+      <td>01594440</td>
+      <td>3</td>
+      <td>1955-06-10 08:35:00</td>
+      <td>EST</td>
+      <td>Yes</td>
+      <td>DGB</td>
+      <td>USGS</td>
+      <td>4.26</td>
+      <td>310.00</td>
+      <td>Good</td>
+      <td>-0.14</td>
+      <td>1.9</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>USGS</td>
+      <td>01594440</td>
+      <td>4</td>
+      <td>1955-07-21 12:15:00</td>
+      <td>EST</td>
+      <td>Yes</td>
+      <td>JMD</td>
+      <td>USGS</td>
+      <td>1.83</td>
+      <td>46.60</td>
+      <td>Good</td>
+      <td>0.00</td>
+      <td>0.8</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>USGS</td>
+      <td>01594440</td>
+      <td>5</td>
+      <td>1955-09-08 17:15:00</td>
+      <td>EST</td>
+      <td>Yes</td>
+      <td>AGT</td>
+      <td>USGS</td>
+      <td>3.25</td>
+      <td>175.00</td>
+      <td>Poor</td>
+      <td>0.00</td>
+      <td>1.3</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>476</th>
+      <td>USGS</td>
+      <td>040851325</td>
+      <td>93</td>
+      <td>2014-05-20 11:42:00</td>
+      <td>CDT</td>
+      <td>Yes</td>
+      <td>PCR</td>
+      <td>USGS</td>
+      <td>2.78</td>
+      <td>34.50</td>
+      <td>Unspecified</td>
+      <td>-0.03</td>
+      <td>0.6</td>
+      <td>NaN</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>477</th>
+      <td>USGS</td>
+      <td>040851325</td>
+      <td>94</td>
+      <td>2014-06-25 16:27:00</td>
+      <td>CDT</td>
+      <td>Yes</td>
+      <td>DLO,ENC</td>
+      <td>USGS</td>
+      <td>2.26</td>
+      <td>11.40</td>
+      <td>Good</td>
+      <td>0.01</td>
+      <td>0.4</td>
+      <td>Clear</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>478</th>
+      <td>USGS</td>
+      <td>040851325</td>
+      <td>95</td>
+      <td>2014-08-13 16:23:00</td>
+      <td>CDT</td>
+      <td>Yes</td>
+      <td>DLO</td>
+      <td>USGS</td>
+      <td>1.91</td>
+      <td>0.82</td>
+      <td>Fair</td>
+      <td>0.00</td>
+      <td>0.4</td>
+      <td>VegetationModerate</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>479</th>
+      <td>USGS</td>
+      <td>040851325</td>
+      <td>96</td>
+      <td>2014-09-24 16:26:00</td>
+      <td>CDT</td>
+      <td>Yes</td>
+      <td>DLO</td>
+      <td>USGS</td>
+      <td>2.23</td>
+      <td>8.90</td>
+      <td>Good</td>
+      <td>0.02</td>
+      <td>0.4</td>
+      <td>VegetationModerate</td>
+      <td>NONE</td>
+    </tr>
+    <tr>
+      <th>480</th>
+      <td>USGS</td>
+      <td>040851325</td>
+      <td>97</td>
+      <td>2016-07-20 08:25:00</td>
+      <td>CDT</td>
+      <td>Yes</td>
+      <td>AJD</td>
+      <td>USGS</td>
+      <td>NaN</td>
+      <td>0.68</td>
+      <td>Fair</td>
+      <td>NaN</td>
+      <td>0.5</td>
+      <td>NaN</td>
+      <td>NONE</td>
+    </tr>
+  </tbody>
+</table>
+<p>481 rows × 15 columns</p>
+</div></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="USGS_dataretrieval_GroundwaterLevels_Examples.html" class="btn btn-neutral float-left" title="USGS dataretrieval Python Package get_gwlevels() Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="USGS_dataretrieval_ParameterCodes_Examples.html" class="btn btn-neutral float-right" title="USGS dataretrieval Python Package get_pmcodes() Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
